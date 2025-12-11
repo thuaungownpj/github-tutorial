@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thu Aung | GitHub Master Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #111111;
+            --border-color: #333;
+            --neon-blue: #00f3ff;
+            --neon-pink: #bc13fe;
+            --neon-green: #0aff60;
+            --neon-yellow: #fcee0a;
+            --text-bright: #ffffff;
+            --text-gray: #b0b0b0;
+            --code-font: 'JetBrains Mono', monospace;
+            --mm-font: 'Padauk', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-bright);
+            font-family: var(--mm-font);
+            line-height: 1.7;
+            padding-bottom: 60px;
+            /* Cyberpunk Background Grid */
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: radial-gradient(circle, rgba(16,16,16,1) 0%, rgba(5,5,5,1) 100%);
+            border-bottom: 2px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-bright);
+            text-shadow: 2px 2px 0px var(--neon-pink);
+        }
+
+        header p {
+            color: var(--neon-green);
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: rgba(188, 19, 254, 0.1);
+            border: 1px solid var(--neon-pink);
+            border-left: 5px solid var(--neon-pink);
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 500;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.2);
+            font-size: 1rem;
+        }
+
+        /* Section Cards */
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.15);
+            border-color: var(--neon-blue);
+        }
+
+        /* Section Header */
+        .section-header {
+            padding: 15px 20px;
+            background: linear-gradient(90deg, #1a1a1a 0%, #0d0d0d 100%);
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--neon-yellow); /* Bright Yellow Title */
+            text-shadow: 0 0 5px rgba(252, 238, 10, 0.5);
+            line-height: 1.5;
+        }
+
+        .section-body {
+            padding: 20px;
+        }
+
+        /* List Styles */
+        .step-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .step-list li {
+            margin-bottom: 12px;
+            color: #e0e0e0; /* Very bright gray */
+            font-size: 1rem;
+            padding-left: 10px;
+            border-left: 2px solid var(--neon-blue);
+        }
+
+        /* Command Groups */
+        .cmd-group {
+            margin-bottom: 20px;
+        }
+
+        .cmd-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--neon-green); /* Bright Green Labels */
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Command Row */
+        .cmd-row {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            background: #000;
+            border: 1px solid #444;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .cmd-text {
+            font-family: var(--code-font);
+            font-size: 0.9rem;
+            color: var(--neon-blue); /* Bright Cyan Commands */
+            padding: 12px 15px;
+            flex-grow: 1;
+            word-break: break-all;
+            display: flex;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: #222;
+            border: none;
+            border-left: 1px solid #444;
+            color: #fff;
+            width: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copy-btn:hover {
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copy-btn.copied {
+            background: var(--neon-green);
+            color: #000;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        
+        /* Mobile specific adjustments */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.4rem; }
+            .section-header h2 { font-size: 1rem; }
+            .cmd-text { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-icon"><i class="fab fa-github-alt"></i></div>
+        <h1>GitHub အသုံးပြုနည်း</h1>
+        <p>User: Thu Aung</p>
+    </header>
+
+    <div class="container">
+
+        <div class="intro-box">
+            <i class="fas fa-terminal"></i>
+            ယခု GitHubအသုံးပြုနည်း Commandများသည် ကျွန်တော် Thu Aung ကိုယ်တိုင်သုံးရန်အတွက်သာရည်ရွယ်ပြီးမှတ်သားထားခြင်းဖြစ်သောကြောင့် GitHubနဲ့ပတ်သက်တာအားလုံးပါဝင်ခြင်းမရှိပါ၊ လိုအပ်လျှင်တော့သုံးနိုင်ပါသည်။
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>(Windows Computerမှာ GitHub အကောင့်အဟောင့်နှင့်ချိတ်မိလျှင် ဖြုတ်ပြီး GitHubအကောင့်သစ်နှင့်ချိတ်ဆက်နည်း)</h2>
+            </div>
+            <div class="section-body">
+                <ul class="step-list">
+                    <li>1. Computer SearchBoxတွင် Credential Manager လို့ရိုက်ရှာပါ။</li>
+                    <li>2. Windows Credentials ဆိုတာကို ရွေးပါ။</li>
+                    <li>3. အောက်နားက စာရင်းတွေထဲမှာ git:https://github.com ဆိုတာကို လိုက်ရှာပါ။ (တချို့စက်တွေမှာ GitHub ဆိုပြီး စတာလည်း ဖြစ်နိုင်ပါတယ်)။</li>
+                    <li>4. တွေ့ပြီဆိုရင် ဘေးက မျှားလေးကိုနှိပ်ပြီး Remove (သို့မဟုတ်) Delete ကို နှိပ်လိုက်ပါ။</li>
+                    <li>5. ဒါဆိုရင် ကွန်ပျူတာက အကောင့်ဟောင်းချိတ်ဆက်ထားတာပြုတ်သွားပါပြီ။</li>
+                    <li>6. GitHub အကောင့်သစ်နှင့်ချိတ်ဆက်ဖို့အတွက် အောက်ပါ Command နှစ်ကြောင်းကို ရိုက်ထည့်ပြီး Brower LogInဝင်ပေးပါ။</li>
+                </ul>
+
+                <div class="cmd-group">
+                    <span class="cmd-label">(git config --global user.name "မိတ်ဆွေရဲ့ GitHub နာမည်အသစ်")</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git config --global user.name "Thu Aung"</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git config --global user.name &quot;Thu Aung&quot;')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="cmd-group">
+                    <span class="cmd-label">(git config --global user.email "မိတ်ဆွေရဲ့ GitHub အီးမေးလ်အသစ်")</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git config --global user.email "yelinnaung.official@gmail.com"</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git config --global user.email &quot;yelinnaung.official@gmail.com&quot;')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>(1) Project အသစ်တင်နည်း</h2>
+            </div>
+            <div class="section-body">
+                <div class="cmd-row">
+                    <div class="cmd-text">git init</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git init')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git add .</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git add .')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git commit -m "First commit"</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git commit -m &quot;First commit&quot;')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git branch -M main</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git branch -M main')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git remote add origin your_github_repo_link</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git remote add origin your_github_repo_link')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git push -u origin main</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git push -u origin main')"><i class="far fa-copy"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>(2) တစ်ပိုင်းချင်း Updateတင်နည်း</h2>
+            </div>
+            <div class="section-body">
+                <div class="cmd-row">
+                    <div class="cmd-text">git add .</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git add .')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git commit -m "Added profile page UI"</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git commit -m &quot;Added profile page UI&quot;')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git push</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git push')"><i class="far fa-copy"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>(3) Version အသစ်တင်နည်း</h2>
+            </div>
+            <div class="section-body">
+                <div class="cmd-row">
+                    <div class="cmd-text">git tag v1.0</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git tag v1.0')"><i class="far fa-copy"></i></button>
+                </div>
+                <div class="cmd-row">
+                    <div class="cmd-text">git push origin v1.0</div>
+                    <button class="copy-btn" onclick="copyText(this, 'git push origin v1.0')"><i class="far fa-copy"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>(4) ချိန်းထားတဲ့ Codeအဟောင်းတွေကို ပြန်စစ်နည်း(Terminalမှာရိုက်ပါ)</h2>
+            </div>
+            <div class="section-body">
+                
+                <div class="cmd-group">
+                    <span class="cmd-label">(Code Updateအပြောင်းအလဲတွေကို စစ်ဆေးတာ)</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git log</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git log')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="cmd-group">
+                    <span class="cmd-label">(လိုချင်တဲ့ရက်ကCodeကိုအပြီးပြန်သွားတာ)</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git reset --hard f4g5h6j</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git reset --hard f4g5h6j')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="cmd-group">
+                    <span class="cmd-label">(လိုချင်တဲ့ရက်ကCodeကိုခနပြန်ကြည့်တာ)</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git checkout &lt;Day_2_ID&gt;</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git checkout <Day_2_ID>')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="cmd-group">
+                    <span class="cmd-label">(လက်ရှိCodeကိုပြန်လာတာ)</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git checkout main</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git checkout main')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>(5) Git Project ဒေါင်းနည်း</h2>
+            </div>
+            <div class="section-body">
+                
+                <div class="cmd-group">
+                    <span class="cmd-label">(Project Cloneလုပ်နည်း)</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git clone git_repo_link write_your_folder_name</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git clone git_repo_link write_your_folder_name')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="cmd-group">
+                    <span class="cmd-label">(Git ပေါ်က Cloneလုပ်ထားတဲ့ Codeတွေကို git reset နဲ့ဖျက်မိသွားရင်၊ Cloneပြန်လုပ်စရာမလိုပဲ Codeပြန်ထည့်နည်း)</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git pull</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git pull')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="cmd-group">
+                    <span class="cmd-label">(အပေါ်ကCommandနဲ့မရခဲ့လျှင်)</span>
+                    <div class="cmd-row">
+                        <div class="cmd-text">git pull origin main</div>
+                        <button class="copy-btn" onclick="copyText(this, 'git pull origin main')"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - 2025 | Note by <b>Thu Aung</b></p>
+        <p style="margin-top:5px; font-size: 0.8rem;">SECURE &bull; PRIVATE &bull; ENCRYPTED</p>
+    </footer>
+
+    <script>
+        function copyText(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalIcon = btn.innerHTML;
+                
+                // Visual feedback
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+
+                // Reset after 1.5 seconds
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="far fa-copy"></i>';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
